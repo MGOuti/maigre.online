@@ -14,16 +14,8 @@ const CourseCard = ({ course, index }: CourseCardProps) => {
       className="group relative w-full overflow-hidden rounded-lg border border-border bg-card text-left transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 animate-fade-in"
       style={{ animationDelay: `${index * 80}ms` }}
     >
-      <div className="relative h-44 w-full overflow-hidden">
-        <img
-          src={course.image}
-          alt={course.title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-        <div className="absolute right-3 top-3 rounded-full bg-card/90 px-2.5 py-1 text-xs font-semibold text-primary backdrop-blur">
-          Acces en cours
-        </div>
+      <div className="flex h-44 w-full items-center justify-center border-b border-border bg-secondary/50 px-6 text-center">
+        <span className="font-display text-lg font-semibold text-primary">Liberando acesso</span>
       </div>
       <div className="p-4">
         <h3 className="font-display text-lg font-semibold text-foreground">{course.title}</h3>
