@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logoImg from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -24,8 +23,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6">
-      <div className="mb-8 flex flex-col items-center gap-2">
-        <img src={logoImg} alt="Stylo Maison Happ logo" className="h-16 w-16 object-contain" />
+      <div className="mb-8 flex flex-col items-center">
         <span className="font-display text-2xl font-bold text-foreground">
           Stylo <span style={{ color: "hsl(var(--primary))" }}>Maison Happ</span>
         </span>

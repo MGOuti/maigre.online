@@ -11,6 +11,14 @@ const Index = () => {
     <div className="min-h-screen bg-background pb-20">
       <AppHeader />
       <main className="mx-auto max-w-md px-4 py-6">
+        <section className="mb-8 overflow-hidden rounded-lg border border-border bg-card">
+          <img
+            src="/stylo-maison-app.png"
+            alt="Stylo Maison App"
+            className="h-auto w-full object-contain"
+          />
+        </section>
+
         <section>
           <h2 className="mb-4 font-display text-lg font-semibold text-foreground">Lecons</h2>
           <div className="flex flex-col gap-4">
