@@ -15,7 +15,7 @@ const CourseCard = ({ course, index }: CourseCardProps) => {
       style={{ animationDelay: `${index * 80}ms` }}
     >
       <div className="flex h-44 w-full items-center justify-center border-b border-border bg-secondary/50 px-6 text-center">
-        <span className="font-display text-lg font-semibold text-primary">Liberando acesso</span>
+        <span className="font-display text-lg font-semibold text-primary">Accorder l'accès</span>
       </div>
       <div className="p-4">
         <h3 className="font-display text-lg font-semibold text-foreground">{course.title}</h3>

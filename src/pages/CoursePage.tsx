@@ -37,7 +37,7 @@ const contentLocked = true;
 
 const AccessPlaceholder = () => (
   <div className="flex aspect-video flex-col items-center justify-center rounded-lg border border-primary/30 bg-card px-6 text-center">
-    <p className="font-display text-xl font-semibold text-primary">Liberando acesso</p>
+    <p className="font-display text-xl font-semibold text-primary">Accorder l'accès</p>
     <p className="mt-2 text-sm text-muted-foreground">
       Ce contenu sera disponible bientot.
     </p>
