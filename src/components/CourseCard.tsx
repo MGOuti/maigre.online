@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { isStarted, isCompleted } from "@/lib/courses";
-import { CheckCircle2, Play } from "lucide-react";
 import type { Course } from "@/lib/courses";
 
 interface CourseCardProps {
@@ -10,9 +8,6 @@ interface CourseCardProps {
 
 const CourseCard = ({ course, index }: CourseCardProps) => {
   const navigate = useNavigate();
-  const started = isStarted(course.id);
-  const completed = isCompleted(course.id);
-
   return (
     <button
       onClick={() => navigate(`/course/${course.id}`)}
@@ -26,16 +21,9 @@ const CourseCard = ({ course, index }: CourseCardProps) => {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-        {completed && (
-          <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-success px-2.5 py-1 text-xs font-semibold text-success-foreground">
-            <CheckCircle2 size={14} /> Concluida
-          </div>
-        )}
-        {started && !completed && (
-          <div className="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-accent px-2.5 py-1 text-xs font-semibold text-accent-foreground">
-            <Play size={14} /> Em andamento
-          </div>
-        )}
+        <div className="absolute right-3 top-3 rounded-full bg-card/90 px-2.5 py-1 text-xs font-semibold text-primary backdrop-blur">
+          Liberando acesso
+        </div>
       </div>
       <div className="p-4">
         <h3 className="font-display text-lg font-semibold text-foreground">{course.title}</h3>
