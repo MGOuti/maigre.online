@@ -27,7 +27,7 @@ const LoginPage = () => {
       <div className="mb-8 flex flex-col items-center gap-2">
         <img src={logoImg} alt="Stylo Maison Happ logo" className="h-16 w-16 object-contain" />
         <span className="font-display text-2xl font-bold text-foreground">
-          Stylo <span style={{ color: "#2debd1" }}>Maison Happ</span>
+          Stylo <span style={{ color: "hsl(var(--primary))" }}>Maison Happ</span>
         </span>
       </div>
 
