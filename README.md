@@ -1,6 +1,6 @@
 # Stylo Maison Happ
 
-Aplicativo mobile-first em Vite, React, TypeScript, Tailwind CSS e shadcn/ui.
+Application mobile-first avec Vite, React, TypeScript, Tailwind CSS et shadcn/ui.
 
 ## Scripts
 
@@ -10,9 +10,9 @@ npm run dev
 npm run build
 ```
 
-## Estrutura
+## Structure
 
-- `src/pages`: telas principais do app.
-- `src/components`: componentes reutilizaveis e UI.
-- `src/lib/courses.ts`: catalogo de aulas, bonus e progresso local.
-- `src/lib/gelatinRecipe.ts`: gerador do protocolo personalizado.
+- `src/pages`: ecrans principaux de l'application.
+- `src/components`: composants reutilisables et UI.
+- `src/lib/courses.ts`: catalogue de lecons, bonus et progression locale.
+- `src/lib/gelatinRecipe.ts`: generateur du protocole personnalise.

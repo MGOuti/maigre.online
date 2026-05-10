@@ -27,8 +27,8 @@ const defaultRecipeForm: RecipeFormData = {
   height: "165",
   weight: "70",
   waist: "85",
-  goal: "Emagrecer com mais constancia",
-  sleep: "7 horas por noite",
+  goal: "Perdre du poids avec plus de regularite",
+  sleep: "7 heures par nuit",
   healthConditions: "",
   medications: "",
 };
@@ -37,9 +37,9 @@ const contentLocked = true;
 
 const AccessPlaceholder = () => (
   <div className="flex aspect-video flex-col items-center justify-center rounded-lg border border-primary/30 bg-card px-6 text-center">
-    <p className="font-display text-xl font-semibold text-primary">Liberando acesso</p>
+    <p className="font-display text-xl font-semibold text-primary">Acces en cours</p>
     <p className="mt-2 text-sm text-muted-foreground">
-      Este conteudo sera disponibilizado em breve.
+      Ce contenu sera disponible bientot.
     </p>
   </div>
 );
@@ -57,7 +57,7 @@ const CoursePage = () => {
   const isUpWithLessons = course?.category === "up" && course.upLessons && course.upLessons.length > 0;
   const [selectedUpLessonIndex, setSelectedUpLessonIndex] = useState(0);
 
-  const isRecipeModule = course?.id === "receita-personalizada";
+  const isRecipeModule = course?.id === "recette-personnalisee";
   const [recipeModalOpen, setRecipeModalOpen] = useState(false);
   const [savedRecipe, setSavedRecipe] = useState<RecipeFormData | null>(null);
   const [recipeForm, setRecipeForm] = useState<RecipeFormData>(defaultRecipeForm);
@@ -98,14 +98,14 @@ const CoursePage = () => {
       const lines = doc.splitTextToSize(header + body, 180);
       doc.setFontSize(10);
       doc.text(lines, 14, 20);
-      doc.save("stylo-maison-happ-receita.pdf");
+      doc.save("stylo-maison-happ-recette.pdf");
     });
   };
 
   if (!course) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
-        <p className="text-muted-foreground">Aula nao encontrada.</p>
+        <p className="text-muted-foreground">Lecon introuvable.</p>
       </div>
     );
   }
@@ -155,7 +155,7 @@ const CoursePage = () => {
             </div>
           )}
 
-          <p className="mt-6 text-center font-display font-medium text-foreground">Escolha a aula:</p>
+          <p className="mt-6 text-center font-display font-medium text-foreground">Choisissez la lecon :</p>
           <div className="mt-3 flex flex-col gap-2">
             {course.upLessons.map((lesson, i) => (
               <button
@@ -177,7 +177,7 @@ const CoursePage = () => {
               onClick={() => navigate("/")}
               className="w-full rounded-lg gradient-primary py-4 font-display font-semibold text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80"
             >
-              Voltar para inicio
+              Retour a l'accueil
             </button>
           </div>
         </main>
@@ -228,21 +228,21 @@ const CoursePage = () => {
                 onClick={openRecipeModal}
                 className="w-full rounded-lg border border-primary bg-transparent py-3 font-display font-semibold text-primary transition-colors hover:bg-primary/10"
               >
-                {savedRecipe ? "Editar minha receita" : "Gerar minha receita personalizada"}
+                {savedRecipe ? "Modifier ma recette" : "Generer ma recette personnalisee"}
               </button>
             </div>
 
             {savedRecipe && (
               <div className="mt-6 rounded-lg border border-border bg-card p-5">
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="font-display text-base font-semibold text-foreground">Seu protocolo</h3>
+                  <h3 className="font-display text-base font-semibold text-foreground">Votre protocole</h3>
                   <button
                     type="button"
                     onClick={openRecipeModal}
                     className="flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
                   >
                     <Pencil size={14} />
-                    Editar
+                    Modifier
                   </button>
                 </div>
                 <p className="mb-4 text-sm text-muted-foreground">{buildRecipeProtocolHeader(savedRecipe)}</p>
@@ -255,7 +255,7 @@ const CoursePage = () => {
                   className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg gradient-primary py-3 font-display font-semibold text-primary-foreground transition-opacity hover:opacity-90"
                 >
                   <Download size={18} />
-                  Baixar PDF
+                  Telecharger le PDF
                 </button>
               </div>
             )}
@@ -263,50 +263,50 @@ const CoursePage = () => {
             <Dialog open={recipeModalOpen} onOpenChange={setRecipeModalOpen}>
               <DialogContent className="max-w-md">
                 <DialogHeader>
-                  <DialogTitle>Personalize sua receita</DialogTitle>
+                  <DialogTitle>Personnalisez votre recette</DialogTitle>
                 </DialogHeader>
                 <div className="grid gap-4 py-2">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label htmlFor="age">Idade</Label>
+                      <Label htmlFor="age">Age</Label>
                       <Input id="age" type="number" min={1} max={120} value={recipeForm.age} onChange={(e) => updateRecipeForm("age", e.target.value)} className="mt-1" />
                     </div>
                     <div>
-                      <Label htmlFor="height">Altura (cm)</Label>
+                      <Label htmlFor="height">Taille (cm)</Label>
                       <Input id="height" type="number" min={100} max={250} value={recipeForm.height} onChange={(e) => updateRecipeForm("height", e.target.value)} className="mt-1" />
                     </div>
                     <div>
-                      <Label htmlFor="weight">Peso (kg)</Label>
+                      <Label htmlFor="weight">Poids (kg)</Label>
                       <Input id="weight" type="number" min={30} max={250} value={recipeForm.weight} onChange={(e) => updateRecipeForm("weight", e.target.value)} className="mt-1" />
                     </div>
                     <div>
-                      <Label htmlFor="waist">Cintura (cm)</Label>
+                      <Label htmlFor="waist">Tour de taille (cm)</Label>
                       <Input id="waist" type="number" min={40} max={200} value={recipeForm.waist} onChange={(e) => updateRecipeForm("waist", e.target.value)} className="mt-1" />
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="goal">Objetivo</Label>
+                    <Label htmlFor="goal">Objectif</Label>
                     <Input id="goal" value={recipeForm.goal} onChange={(e) => updateRecipeForm("goal", e.target.value)} className="mt-1" />
                   </div>
                   <div>
-                    <Label htmlFor="sleep">Sono</Label>
+                    <Label htmlFor="sleep">Sommeil</Label>
                     <Input id="sleep" value={recipeForm.sleep} onChange={(e) => updateRecipeForm("sleep", e.target.value)} className="mt-1" />
                   </div>
                   <div>
-                    <Label htmlFor="healthConditions">Doencas/condicoes de saude</Label>
+                    <Label htmlFor="healthConditions">Maladies/conditions de sante</Label>
                     <Textarea id="healthConditions" value={recipeForm.healthConditions} onChange={(e) => updateRecipeForm("healthConditions", e.target.value)} className="mt-1 min-h-20" />
                   </div>
                   <div>
-                    <Label htmlFor="medications">Medicamentos/suplementos</Label>
+                    <Label htmlFor="medications">Medicaments/complements</Label>
                     <Textarea id="medications" value={recipeForm.medications} onChange={(e) => updateRecipeForm("medications", e.target.value)} className="mt-1 min-h-20" />
                   </div>
                 </div>
                 <DialogFooter className="gap-2 sm:gap-0">
                   <Button type="button" variant="outline" onClick={() => setRecipeModalOpen(false)}>
-                    Cancelar
+                    Annuler
                   </Button>
                   <Button type="button" onClick={confirmRecipe} className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    Confirmar
+                    Confirmer
                   </Button>
                 </DialogFooter>
               </DialogContent>
@@ -319,27 +319,27 @@ const CoursePage = () => {
             onClick={handleNextOrHome}
             className="flex w-full items-center justify-center gap-2 rounded-lg gradient-primary py-4 font-display font-semibold text-primary-foreground transition-opacity hover:opacity-90 active:opacity-80"
           >
-            {nextLesson ? "Proxima aula >" : "Voltar para inicio"}
+            {nextLesson ? "Lecon suivante >" : "Retour a l'accueil"}
           </button>
         </div>
 
-        {course.id === "comece-aqui" && (
+        {course.id === "commencez-ici" && (
           <div className="mt-6 rounded-lg border border-border bg-card p-5">
-            <h3 className="mb-4 text-center font-display font-semibold text-foreground">Precisa de ajuda?</h3>
+            <h3 className="mb-4 text-center font-display font-semibold text-foreground">Besoin d'aide ?</h3>
             <div className="space-y-4">
               <div>
                 <div className="mb-1 flex items-center gap-2">
                   <Mail size={18} className="shrink-0 text-primary" />
-                  <span className="text-sm font-medium text-foreground">Email de suporte:</span>
+                  <span className="text-sm font-medium text-foreground">E-mail de support :</span>
                 </div>
-                <a href="mailto:suporte@maigre.online" className="text-sm text-primary underline hover:opacity-90">
-                  suporte@maigre.online
+                <a href="mailto:contact@maigre.online" className="text-sm text-primary underline hover:opacity-90">
+                  contact@maigre.online
                 </a>
               </div>
               <div>
                 <div className="mb-1 flex items-center gap-2">
                   <MessageCircle size={18} className="shrink-0 text-primary" />
-                  <span className="text-sm font-medium text-foreground">Suporte via WhatsApp:</span>
+                  <span className="text-sm font-medium text-foreground">Support via WhatsApp :</span>
                 </div>
                 <a
                   href="https://wa.link/ko4kn8"
@@ -347,7 +347,7 @@ const CoursePage = () => {
                   rel="noopener noreferrer"
                   className="text-sm text-primary underline hover:opacity-90"
                 >
-                  Abrir atendimento
+                  Ouvrir l'assistance
                 </a>
               </div>
             </div>

@@ -11,53 +11,53 @@ export interface RecipeFormData {
 
 export function buildRecipeProtocolHeader(data: RecipeFormData): string {
   return [
-    `Idade: ${data.age}`,
-    `Altura: ${data.height} cm`,
-    `Peso: ${data.weight} kg`,
-    `Cintura: ${data.waist} cm`,
+    `Age : ${data.age}`,
+    `Taille : ${data.height} cm`,
+    `Poids : ${data.weight} kg`,
+    `Tour de taille : ${data.waist} cm`,
   ].join(" | ");
 }
 
 export function buildRecipeFullContent(data: RecipeFormData): string {
-  const goal = data.goal.trim() || "emagrecimento gradual";
-  const sleep = data.sleep.trim() || "nao informado";
-  const health = data.healthConditions.trim() || "nenhuma condicao informada";
-  const meds = data.medications.trim() || "nenhum medicamento ou suplemento informado";
+  const goal = data.goal.trim() || "perte de poids progressive";
+  const sleep = data.sleep.trim() || "non renseigne";
+  const health = data.healthConditions.trim() || "aucune condition indiquee";
+  const meds = data.medications.trim() || "aucun medicament ou complement indique";
 
-  return `Resumo pessoal
-Objetivo: ${goal}
-Sono: ${sleep}
-Condicoes de saude: ${health}
-Medicamentos/suplementos: ${meds}
+  return `Resume personnel
+Objectif : ${goal}
+Sommeil : ${sleep}
+Conditions de sante : ${health}
+Medicaments/complements : ${meds}
 
-Receita guia diaria
-Agua filtrada quente: 440 ml
-Gelatina sem sabor: 13 g
-Cha verde concentrado: 220 ml
-Gengibre em po: 1 g
-Canela em po: 1 g
-Suco de limao fresco: 1 colher de sopa
-Mel: 1 colher de cha
+Recette guide quotidienne
+Eau filtree chaude : 440 ml
+Gelatine neutre : 13 g
+The vert concentre : 220 ml
+Gingembre en poudre : 1 g
+Cannelle en poudre : 1 g
+Jus de citron frais : 1 cuillere a soupe
+Miel : 1 cuillere a cafe
 
-Preparo
-Prepare o cha verde concentrado e deixe amornar.
-Hidrate a gelatina sem sabor em 130 ml de agua fria por 2 minutos.
-Misture a agua quente ate dissolver completamente.
-Adicione o cha verde, gengibre, canela, limao e mel.
-Leve a geladeira por 3 a 4 horas, ate firmar.
+Preparation
+Preparez le the vert concentre et laissez tiedir.
+Hydratez la gelatine neutre dans 130 ml d'eau froide pendant 2 minutes.
+Ajoutez l'eau chaude et melangez jusqu'a dissolution complete.
+Ajoutez le the vert, le gingembre, la cannelle, le citron et le miel.
+Placez au refrigerateur pendant 3 a 4 heures, jusqu'a ce que la preparation soit ferme.
 
-Como consumir
-Divida em 2 porcoes.
-Consuma a primeira porcao pela manha.
-Consuma a segunda porcao 20 a 30 minutos antes do almoco ou jantar.
+Comment consommer
+Divisez en 2 portions.
+Consommez la premiere portion le matin.
+Consommez la deuxieme portion 20 a 30 minutes avant le dejeuner ou le diner.
 
-Acompanhamento
-Observe cintura, energia, fome, sono e constancia semanalmente.
-Se houver desconforto, reduza a intensidade ou pause.
-Evite usar a receita como substituta de refeicoes completas.
+Suivi
+Observez chaque semaine le tour de taille, l'energie, la faim, le sommeil et la regularite.
+En cas d'inconfort, reduisez l'intensite ou faites une pause.
+N'utilisez pas cette recette comme substitut de repas complets.
 
-Aviso importante
-Este material e educativo e nao substitui orientacao medica ou nutricional. Consulte uma profissional de saude antes de iniciar se voce estiver gravida, amamentando, tiver condicoes de saude, usar medicamentos ou apresentar qualquer reacao adversa.`;
+Avis important
+Ce contenu est educatif et ne remplace pas un avis medical ou nutritionnel. Consultez une professionnelle de sante avant de commencer si vous etes enceinte, allaitez, avez des conditions de sante, prenez des medicaments ou presentez une reaction indesirable.`;
 }
 
 const STORAGE_KEY = "stylo-maison-happ-recipe";

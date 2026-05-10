@@ -15,7 +15,7 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!isValidEmail(email)) {
-      setError("Digite um email valido.");
+      setError("Veuillez saisir une adresse e-mail valide.");
       return;
     }
     setError("");
@@ -33,16 +33,16 @@ const LoginPage = () => {
 
       <div className="w-full max-w-sm">
         <h1 className="mb-2 text-center font-display text-xl font-bold text-foreground">
-          Bem-vinda ao Stylo Maison Happ
+          Bienvenue sur Stylo Maison Happ
         </h1>
         <p className="mb-6 text-center text-sm text-muted-foreground">
-          Digite o email usado na compra para acessar
+          Saisissez l'e-mail utilise lors de l'achat pour acceder
         </p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <Input
             type="email"
-            placeholder="Seu email"
+            placeholder="Votre e-mail"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -50,11 +50,11 @@ const LoginPage = () => {
             }}
           />
           {error && <p className="text-sm text-destructive">{error}</p>}
-          <Button type="submit" className="w-full">Entrar</Button>
+          <Button type="submit" className="w-full">Entrer</Button>
         </form>
 
         <p className="mt-4 text-center text-xs text-muted-foreground">
-          Seu email nao e armazenado. Ele serve apenas para liberar o acesso.
+          Votre e-mail n'est pas enregistre. Il sert seulement a liberer l'acces.
         </p>
       </div>
     </div>

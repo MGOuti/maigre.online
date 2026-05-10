@@ -22,7 +22,7 @@ const CourseCard = ({ course, index }: CourseCardProps) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
         <div className="absolute right-3 top-3 rounded-full bg-card/90 px-2.5 py-1 text-xs font-semibold text-primary backdrop-blur">
-          Liberando acesso
+          Acces en cours
         </div>
       </div>
       <div className="p-4">

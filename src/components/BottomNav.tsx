@@ -2,9 +2,9 @@ import { Home, PlayCircle, Settings } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const tabs = [
-  { path: "/", label: "Inicio", icon: Home },
-  { path: "/continue", label: "Continuar", icon: PlayCircle },
-  { path: "/settings", label: "Ajustes", icon: Settings },
+  { path: "/", label: "Accueil", icon: Home },
+  { path: "/continue", label: "Continuer", icon: PlayCircle },
+  { path: "/settings", label: "Reglages", icon: Settings },
 ];
 
 const BottomNav = () => {

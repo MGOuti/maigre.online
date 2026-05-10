@@ -12,15 +12,15 @@ const SettingsPage = () => {
 
   return (
     <div className="min-h-screen bg-background pb-20">
-      <AppHeader title="Ajustes" />
+      <AppHeader title="Reglages" />
       <main className="mx-auto max-w-md px-4 py-6 flex flex-col gap-4">
         <div className="rounded-lg border border-border bg-card p-5">
           <div className="flex items-center gap-3 mb-4">
             <BarChart3 size={20} className="text-primary" />
-            <h3 className="font-display font-semibold text-foreground">Progresso</h3>
+            <h3 className="font-display font-semibold text-foreground">Progression</h3>
           </div>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm text-muted-foreground">Progresso geral</span>
+            <span className="text-sm text-muted-foreground">Progression globale</span>
             <span className="text-sm font-semibold text-primary">{percent}%</span>
           </div>
           <div className="h-2 w-full overflow-hidden rounded-full bg-secondary">
@@ -30,7 +30,7 @@ const SettingsPage = () => {
             />
           </div>
           <p className="mt-3 text-xs text-muted-foreground">
-            {completedCount} de {total} aulas concluidas.
+            {completedCount} lecons terminees sur {total}.
           </p>
         </div>
 
@@ -40,8 +40,8 @@ const SettingsPage = () => {
         >
           <Shield size={20} className="text-muted-foreground" />
           <div>
-            <p className="text-sm font-medium text-foreground">Privacidade e seguranca</p>
-            <p className="text-xs text-muted-foreground">Veja como os dados ficam salvos</p>
+            <p className="text-sm font-medium text-foreground">Confidentialite et securite</p>
+            <p className="text-xs text-muted-foreground">Voir comment les donnees sont enregistrees</p>
           </div>
         </button>
 
@@ -51,8 +51,8 @@ const SettingsPage = () => {
         >
           <HelpCircle size={20} className="text-muted-foreground" />
           <div>
-            <p className="text-sm font-medium text-foreground">Ajuda e suporte</p>
-            <p className="text-xs text-muted-foreground">Fale com o atendimento</p>
+            <p className="text-sm font-medium text-foreground">Aide et support</p>
+            <p className="text-xs text-muted-foreground">Contacter l'assistance</p>
           </div>
         </button>
 
@@ -62,8 +62,8 @@ const SettingsPage = () => {
         >
           <LogOut size={20} className="text-destructive" />
           <div>
-            <p className="text-sm font-medium text-destructive">Sair</p>
-            <p className="text-xs text-muted-foreground">Voltar para a tela de acesso</p>
+            <p className="text-sm font-medium text-destructive">Se deconnecter</p>
+            <p className="text-xs text-muted-foreground">Revenir a l'ecran d'acces</p>
           </div>
         </button>
       </main>
