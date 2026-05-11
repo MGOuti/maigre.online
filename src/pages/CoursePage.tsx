@@ -33,7 +33,9 @@ const defaultRecipeForm: RecipeFormData = {
   medications: "",
 };
 
+const releasedVideoCourseIds = new Set(["commencez-ici", "comprendre-votre-corps", "recette-personnalisee"]);
 const videosLocked = true;
+const recipeLocked = true;
 
 const AccessPlaceholder = () => (
   <div className="flex aspect-video flex-col items-center justify-center rounded-lg border border-primary/30 bg-card px-6 text-center">
@@ -55,6 +57,7 @@ const CoursePage = () => {
       : null;
 
   const isUpWithLessons = course?.category === "up" && course.upLessons && course.upLessons.length > 0;
+  const isReleasedVideoCourse = course ? releasedVideoCourseIds.has(course.id) : false;
   const [selectedUpLessonIndex, setSelectedUpLessonIndex] = useState(0);
 
   const isRecipeModule = course?.id === "recette-personnalisee";
@@ -202,7 +205,7 @@ const CoursePage = () => {
           <div className="aspect-video overflow-hidden rounded-lg border border-border">
             <iframe src={course.pdfUrl} className="h-full w-full" title={course.title} />
           </div>
-        ) : !videosLocked && course.videoUrl ? (
+        ) : isReleasedVideoCourse && course.videoUrl ? (
           <div className="aspect-video overflow-hidden rounded-lg border border-border">
             <iframe
               src={course.videoUrl}
@@ -216,7 +219,7 @@ const CoursePage = () => {
           <AccessPlaceholder />
         )}
 
-        {!videosLocked && isRecipeModule && (
+        {!recipeLocked && isRecipeModule && (
           <>
             <div className="mt-6">
               <button

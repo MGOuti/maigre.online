@@ -9,9 +9,11 @@ interface CourseCardProps {
 const CourseCard = ({ course, index }: CourseCardProps) => {
   const navigate = useNavigate();
   const hasReleasedCover = Boolean(
-    course.pdfUrl || course.id === "accelerateur" || course.upLessons?.some((lesson) => lesson.pdfUrl)
+    course.pdfUrl ||
+      ["accelerateur", "commencez-ici", "comprendre-votre-corps", "recette-personnalisee"].includes(course.id) ||
+      course.upLessons?.some((lesson) => lesson.pdfUrl)
   );
-  const isLogoCover = course.image.startsWith("/");
+  const isLogoCover = ["accelerateur", "glycemie-et-minceur", "peau-ferme"].includes(course.id);
 
   return (
     <button
