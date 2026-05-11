@@ -33,7 +33,7 @@ const defaultRecipeForm: RecipeFormData = {
   medications: "",
 };
 
-const contentLocked = true;
+const videosLocked = true;
 
 const AccessPlaceholder = () => (
   <div className="flex aspect-video flex-col items-center justify-center rounded-lg border border-primary/30 bg-card px-6 text-center">
@@ -131,28 +131,28 @@ const CoursePage = () => {
         </header>
 
         <main className="mx-auto max-w-md px-4 py-6">
-          {contentLocked ? (
-            <AccessPlaceholder />
-          ) : (
+          {selectedLesson.pdfUrl ? (
             <div className="aspect-video overflow-hidden rounded-lg border border-border">
-              {selectedLesson.videoUrl ? (
-                <iframe
-                  key={selectedUpLessonIndex}
-                  src={selectedLesson.videoUrl}
-                  className="h-full w-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  title={selectedLesson.title}
-                />
-              ) : selectedLesson.pdfUrl ? (
-                <iframe
-                  key={selectedUpLessonIndex}
-                  src={selectedLesson.pdfUrl}
-                  className="h-full w-full"
-                  title={selectedLesson.title}
-                />
-              ) : null}
+              <iframe
+                key={selectedUpLessonIndex}
+                src={selectedLesson.pdfUrl}
+                className="h-full w-full"
+                title={selectedLesson.title}
+              />
             </div>
+          ) : !videosLocked && selectedLesson.videoUrl ? (
+            <div className="aspect-video overflow-hidden rounded-lg border border-border">
+              <iframe
+                key={selectedUpLessonIndex}
+                src={selectedLesson.videoUrl}
+                className="h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title={selectedLesson.title}
+              />
+            </div>
+          ) : (
+            <AccessPlaceholder />
           )}
 
           <p className="mt-6 text-center font-display font-medium text-foreground">Choisissez la lecon :</p>
@@ -198,9 +198,11 @@ const CoursePage = () => {
       </header>
 
       <main className="mx-auto max-w-md px-4 py-6">
-        <AccessPlaceholder />
-
-        {!contentLocked && course.videoUrl && (
+        {course.pdfUrl ? (
+          <div className="aspect-video overflow-hidden rounded-lg border border-border">
+            <iframe src={course.pdfUrl} className="h-full w-full" title={course.title} />
+          </div>
+        ) : !videosLocked && course.videoUrl ? (
           <div className="aspect-video overflow-hidden rounded-lg border border-border">
             <iframe
               src={course.videoUrl}
@@ -210,17 +212,11 @@ const CoursePage = () => {
               title={course.title}
             />
           </div>
+        ) : (
+          <AccessPlaceholder />
         )}
 
-        {!contentLocked && course.pdfUrl && (
-          <div className={course.videoUrl ? "mt-4" : ""}>
-            <div className="aspect-video overflow-hidden rounded-lg border border-border">
-              <iframe src={course.pdfUrl} className="h-full w-full" title={course.title} />
-            </div>
-          </div>
-        )}
-
-        {!contentLocked && isRecipeModule && (
+        {!videosLocked && isRecipeModule && (
           <>
             <div className="mt-6">
               <button
