@@ -23,19 +23,19 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 const defaultRecipeForm: RecipeFormData = {
-  age: "30",
-  height: "165",
-  weight: "70",
-  waist: "85",
-  goal: "Perdre du poids avec plus de regularite",
-  sleep: "7 heures par nuit",
+  age: "",
+  height: "",
+  weight: "",
+  waist: "",
+  goal: "",
+  sleep: "",
   healthConditions: "",
   medications: "",
 };
 
 const releasedVideoCourseIds = new Set(["commencez-ici", "comprendre-votre-corps", "recette-personnalisee"]);
 const videosLocked = true;
-const recipeLocked = true;
+const recipeLocked = false;
 
 const AccessPlaceholder = () => (
   <div className="flex aspect-video flex-col items-center justify-center rounded-lg border border-primary/30 bg-card px-6 text-center">
@@ -64,6 +64,7 @@ const CoursePage = () => {
   const [recipeModalOpen, setRecipeModalOpen] = useState(false);
   const [savedRecipe, setSavedRecipe] = useState<RecipeFormData | null>(null);
   const [recipeForm, setRecipeForm] = useState<RecipeFormData>(defaultRecipeForm);
+  const [isRecipeLoading, setIsRecipeLoading] = useState(false);
 
   useEffect(() => {
     if (isRecipeModule) setSavedRecipe(loadSavedRecipe());
@@ -87,9 +88,15 @@ const CoursePage = () => {
   };
 
   const confirmRecipe = () => {
-    saveRecipe(recipeForm);
-    setSavedRecipe(recipeForm);
+    const personalizedRecipe = { ...recipeForm };
+    setSavedRecipe(null);
+    setIsRecipeLoading(true);
     setRecipeModalOpen(false);
+    window.setTimeout(() => {
+      saveRecipe(personalizedRecipe);
+      setSavedRecipe(personalizedRecipe);
+      setIsRecipeLoading(false);
+    }, 1800);
   };
 
   const downloadRecipePdf = () => {
@@ -227,14 +234,23 @@ const CoursePage = () => {
                 onClick={openRecipeModal}
                 className="w-full rounded-lg border border-primary bg-transparent py-3 font-display font-semibold text-primary transition-colors hover:bg-primary/10"
               >
-                {savedRecipe ? "Modifier ma recette" : "Generer ma recette personnalisee"}
+                {savedRecipe ? "Modifier ma recette" : "Créer ma recette personnalisée"}
               </button>
             </div>
 
-            {savedRecipe && (
+            {isRecipeLoading && (
+              <div className="mt-6 rounded-lg border border-primary/30 bg-card p-5 text-center">
+                <h3 className="font-display text-lg font-semibold text-primary">Chargement...</h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  Nous préparons votre recette personnalisée.
+                </p>
+              </div>
+            )}
+
+            {!isRecipeLoading && savedRecipe && (
               <div className="mt-6 rounded-lg border border-border bg-card p-5">
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-                  <h3 className="font-display text-base font-semibold text-foreground">Votre protocole</h3>
+                  <h3 className="font-display text-base font-semibold text-foreground">Recette personnalisée</h3>
                   <button
                     type="button"
                     onClick={openRecipeModal}
@@ -254,7 +270,7 @@ const CoursePage = () => {
                   className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg gradient-primary py-3 font-display font-semibold text-primary-foreground transition-opacity hover:opacity-90"
                 >
                   <Download size={18} />
-                  Telecharger le PDF
+                  Télécharger le PDF
                 </button>
               </div>
             )}
@@ -267,37 +283,37 @@ const CoursePage = () => {
                 <div className="grid gap-4 py-2">
                   <div className="grid grid-cols-2 gap-2">
                     <div>
-                      <Label htmlFor="age">Age</Label>
-                      <Input id="age" type="number" min={1} max={120} value={recipeForm.age} onChange={(e) => updateRecipeForm("age", e.target.value)} className="mt-1" />
+                      <Label htmlFor="age">Âge</Label>
+                      <Input id="age" inputMode="numeric" placeholder="Ex. 34" value={recipeForm.age} onChange={(e) => updateRecipeForm("age", e.target.value)} className="mt-1" />
                     </div>
                     <div>
-                      <Label htmlFor="height">Taille (cm)</Label>
-                      <Input id="height" type="number" min={100} max={250} value={recipeForm.height} onChange={(e) => updateRecipeForm("height", e.target.value)} className="mt-1" />
+                      <Label htmlFor="weight">Poids</Label>
+                      <Input id="weight" inputMode="numeric" placeholder="Ex. 70 kg" value={recipeForm.weight} onChange={(e) => updateRecipeForm("weight", e.target.value)} className="mt-1" />
                     </div>
                     <div>
-                      <Label htmlFor="weight">Poids (kg)</Label>
-                      <Input id="weight" type="number" min={30} max={250} value={recipeForm.weight} onChange={(e) => updateRecipeForm("weight", e.target.value)} className="mt-1" />
+                      <Label htmlFor="height">Taille</Label>
+                      <Input id="height" inputMode="numeric" placeholder="Ex. 165 cm" value={recipeForm.height} onChange={(e) => updateRecipeForm("height", e.target.value)} className="mt-1" />
                     </div>
                     <div>
-                      <Label htmlFor="waist">Tour de taille (cm)</Label>
-                      <Input id="waist" type="number" min={40} max={200} value={recipeForm.waist} onChange={(e) => updateRecipeForm("waist", e.target.value)} className="mt-1" />
+                      <Label htmlFor="waist">Circonférence de la taille</Label>
+                      <Input id="waist" inputMode="numeric" placeholder="Ex. 85 cm" value={recipeForm.waist} onChange={(e) => updateRecipeForm("waist", e.target.value)} className="mt-1" />
                     </div>
                   </div>
                   <div>
                     <Label htmlFor="goal">Objectif</Label>
-                    <Input id="goal" value={recipeForm.goal} onChange={(e) => updateRecipeForm("goal", e.target.value)} className="mt-1" />
+                    <Input id="goal" placeholder="Ex. Perdre du poids" value={recipeForm.goal} onChange={(e) => updateRecipeForm("goal", e.target.value)} className="mt-1" />
                   </div>
                   <div>
                     <Label htmlFor="sleep">Sommeil</Label>
-                    <Input id="sleep" value={recipeForm.sleep} onChange={(e) => updateRecipeForm("sleep", e.target.value)} className="mt-1" />
+                    <Input id="sleep" placeholder="Ex. 7 heures par nuit" value={recipeForm.sleep} onChange={(e) => updateRecipeForm("sleep", e.target.value)} className="mt-1" />
                   </div>
                   <div>
-                    <Label htmlFor="healthConditions">Maladies/conditions de sante</Label>
-                    <Textarea id="healthConditions" value={recipeForm.healthConditions} onChange={(e) => updateRecipeForm("healthConditions", e.target.value)} className="mt-1 min-h-20" />
+                    <Label htmlFor="healthConditions">Maladies/conditions de santé</Label>
+                    <Textarea id="healthConditions" placeholder="Ex. Aucune, diabète, hypertension..." value={recipeForm.healthConditions} onChange={(e) => updateRecipeForm("healthConditions", e.target.value)} className="mt-1 min-h-20" />
                   </div>
                   <div>
-                    <Label htmlFor="medications">Medicaments/complements</Label>
-                    <Textarea id="medications" value={recipeForm.medications} onChange={(e) => updateRecipeForm("medications", e.target.value)} className="mt-1 min-h-20" />
+                    <Label htmlFor="medications">Médicaments/suppléments</Label>
+                    <Textarea id="medications" placeholder="Ex. Aucun, vitamines, traitements..." value={recipeForm.medications} onChange={(e) => updateRecipeForm("medications", e.target.value)} className="mt-1 min-h-20" />
                   </div>
                 </div>
                 <DialogFooter className="gap-2 sm:gap-0">
@@ -305,7 +321,7 @@ const CoursePage = () => {
                     Annuler
                   </Button>
                   <Button type="button" onClick={confirmRecipe} className="bg-primary text-primary-foreground hover:bg-primary/90">
-                    Confirmer
+                    Générer
                   </Button>
                 </DialogFooter>
               </DialogContent>

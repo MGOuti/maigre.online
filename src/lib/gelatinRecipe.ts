@@ -11,53 +11,48 @@ export interface RecipeFormData {
 
 export function buildRecipeProtocolHeader(data: RecipeFormData): string {
   return [
-    `Age : ${data.age}`,
-    `Taille : ${data.height} cm`,
-    `Poids : ${data.weight} kg`,
-    `Tour de taille : ${data.waist} cm`,
+    `Âge : ${data.age || "non renseigné"}`,
+    `Poids : ${data.weight ? `${data.weight} kg` : "non renseigné"}`,
+    `Taille : ${data.height ? `${data.height} cm` : "non renseignée"}`,
+    `Circonférence de la taille : ${data.waist ? `${data.waist} cm` : "non renseignée"}`,
   ].join(" | ");
 }
 
 export function buildRecipeFullContent(data: RecipeFormData): string {
+  const age = data.age.trim() || "non renseigné";
+  const weight = data.weight.trim() || "non renseigné";
+  const height = data.height.trim() || "non renseignée";
+  const waist = data.waist.trim() || "non renseignée";
   const goal = data.goal.trim() || "perte de poids progressive";
-  const sleep = data.sleep.trim() || "non renseigne";
-  const health = data.healthConditions.trim() || "aucune condition indiquee";
-  const meds = data.medications.trim() || "aucun medicament ou complement indique";
+  const sleep = data.sleep.trim() || "non renseigné";
+  const health = data.healthConditions.trim() || "aucune condition indiquée";
+  const meds = data.medications.trim() || "aucun médicament ou supplément indiqué";
 
-  return `Resume personnel
+  return `Recette personnalisée
+Âge : ${age}
+Poids : ${weight}${weight === "non renseigné" ? "" : " kg"}
+Taille : ${height}${height === "non renseignée" ? "" : " cm"}
+Circonférence de la taille : ${waist}${waist === "non renseignée" ? "" : " cm"}
 Objectif : ${goal}
 Sommeil : ${sleep}
-Conditions de sante : ${health}
-Medicaments/complements : ${meds}
+Maladies/conditions de santé : ${health}
+Médicaments/suppléments : ${meds}
 
-Recette guide quotidienne
-Eau filtree chaude : 440 ml
-Gelatine neutre : 13 g
-The vert concentre : 220 ml
-Gingembre en poudre : 1 g
-Cannelle en poudre : 1 g
-Jus de citron frais : 1 cuillere a soupe
-Miel : 1 cuillere a cafe
+Votre recette
+3 cuillères à soupe de sauce tomate prête
+1 cuillère à café de mayonnaise
+1/2 cuillère à café de vinaigre de cidre
+1/2 cuillère à café d'édulcorant
+1 pincée de sel
+Paprika
 
 Preparation
-Preparez le the vert concentre et laissez tiedir.
-Hydratez la gelatine neutre dans 130 ml d'eau froide pendant 2 minutes.
-Ajoutez l'eau chaude et melangez jusqu'a dissolution complete.
-Ajoutez le the vert, le gingembre, la cannelle, le citron et le miel.
-Placez au refrigerateur pendant 3 a 4 heures, jusqu'a ce que la preparation soit ferme.
-
-Comment consommer
-Divisez en 2 portions.
-Consommez la premiere portion le matin.
-Consommez la deuxieme portion 20 a 30 minutes avant le dejeuner ou le diner.
-
-Suivi
-Observez chaque semaine le tour de taille, l'energie, la faim, le sommeil et la regularite.
-En cas d'inconfort, reduisez l'intensite ou faites une pause.
-N'utilisez pas cette recette comme substitut de repas complets.
+Mélangez tous les ingrédients jusqu'à obtenir une sauce homogène.
+Ajustez le paprika selon votre goût.
+Utilisez comme accompagnement dans une portion adaptée à votre objectif.
 
 Avis important
-Ce contenu est educatif et ne remplace pas un avis medical ou nutritionnel. Consultez une professionnelle de sante avant de commencer si vous etes enceinte, allaitez, avez des conditions de sante, prenez des medicaments ou presentez une reaction indesirable.`;
+Ce contenu est éducatif et ne remplace pas un avis médical ou nutritionnel. Consultez une professionnelle de santé avant de commencer si vous êtes enceinte, allaitez, avez des conditions de santé, prenez des médicaments ou présentez une réaction indésirable.`;
 }
 
 const STORAGE_KEY = "stylo-maison-app-recipe";
