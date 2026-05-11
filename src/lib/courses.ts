@@ -150,7 +150,7 @@ export const courses: Course[] = [
   },
 ];
 
-const STORAGE_KEY = "stylo-maison-happ-progress";
+const STORAGE_KEY = "stylo-maison-app-progress";
 
 interface CourseProgress {
   started: string[];

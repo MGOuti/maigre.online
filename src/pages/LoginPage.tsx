@@ -25,13 +25,13 @@ const LoginPage = () => {
     <div className="flex min-h-screen flex-col items-center justify-center bg-background px-6">
       <div className="mb-8 flex flex-col items-center">
         <span className="font-display text-2xl font-bold text-foreground">
-          Stylo <span style={{ color: "hsl(var(--primary))" }}>Maison Happ</span>
+          Stylo <span style={{ color: "hsl(var(--primary))" }}>Maison App</span>
         </span>
       </div>
 
       <div className="w-full max-w-sm">
         <h1 className="mb-2 text-center font-display text-xl font-bold text-foreground">
-          Bienvenue sur Stylo Maison Happ
+          Bienvenue sur Stylo Maison App
         </h1>
         <p className="mb-6 text-center text-sm text-muted-foreground">
           Saisissez l'e-mail utilise lors de l'achat pour acceder

@@ -1,4 +1,4 @@
-# Stylo Maison Happ
+# Stylo Maison App
 
 Application mobile-first avec Vite, React, TypeScript, Tailwind CSS et shadcn/ui.
 

@@ -60,7 +60,7 @@ Avis important
 Ce contenu est educatif et ne remplace pas un avis medical ou nutritionnel. Consultez une professionnelle de sante avant de commencer si vous etes enceinte, allaitez, avez des conditions de sante, prenez des medicaments ou presentez une reaction indesirable.`;
 }
 
-const STORAGE_KEY = "stylo-maison-happ-recipe";
+const STORAGE_KEY = "stylo-maison-app-recipe";
 
 export function loadSavedRecipe(): RecipeFormData | null {
   try {

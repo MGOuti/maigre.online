@@ -93,12 +93,12 @@ const CoursePage = () => {
     if (!savedRecipe) return;
     import("jspdf").then(({ jsPDF }) => {
       const doc = new jsPDF({ format: "a4", unit: "mm" });
-      const header = `Stylo Maison Happ\n${buildRecipeProtocolHeader(savedRecipe)}\n\n`;
+      const header = `Stylo Maison App\n${buildRecipeProtocolHeader(savedRecipe)}\n\n`;
       const body = buildRecipeFullContent(savedRecipe);
       const lines = doc.splitTextToSize(header + body, 180);
       doc.setFontSize(10);
       doc.text(lines, 14, 20);
-      doc.save("stylo-maison-happ-recette.pdf");
+      doc.save("stylo-maison-app-recette.pdf");
     });
   };
 

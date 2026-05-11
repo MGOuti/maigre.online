@@ -10,7 +10,7 @@ const AppHeader = ({ title }: AppHeaderProps) => {
           <span className="font-display text-xl font-bold text-foreground">
             {title ?? (
               <>
-                Stylo <span style={{ color: "hsl(var(--primary))" }}>Maison Happ</span>
+                Stylo <span style={{ color: "hsl(var(--primary))" }}>Maison App</span>
               </>
             )}
           </span>
