@@ -8,7 +8,10 @@ interface CourseCardProps {
 
 const CourseCard = ({ course, index }: CourseCardProps) => {
   const navigate = useNavigate();
-  const hasReleasedContent = Boolean(course.pdfUrl || course.upLessons?.some((lesson) => lesson.pdfUrl));
+  const hasReleasedCover = Boolean(
+    course.pdfUrl || course.id === "accelerateur" || course.upLessons?.some((lesson) => lesson.pdfUrl)
+  );
+  const isLogoCover = course.image.startsWith("/");
 
   return (
     <button
@@ -16,12 +19,16 @@ const CourseCard = ({ course, index }: CourseCardProps) => {
       className="group relative w-full overflow-hidden rounded-lg border border-border bg-card text-left transition-all hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 animate-fade-in"
       style={{ animationDelay: `${index * 80}ms` }}
     >
-      {hasReleasedContent ? (
-        <div className="relative h-44 w-full overflow-hidden border-b border-border">
+      {hasReleasedCover ? (
+        <div className={`relative h-44 w-full overflow-hidden border-b border-border ${isLogoCover ? "bg-white" : ""}`}>
           <img
             src={course.image}
             alt={course.title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className={`h-full w-full transition-transform duration-500 ${
+              isLogoCover
+                ? "scale-150 object-contain p-0 group-hover:scale-[1.58]"
+                : "object-cover group-hover:scale-105"
+            }`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
         </div>
