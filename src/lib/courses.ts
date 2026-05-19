@@ -91,10 +91,10 @@ export const courses: Course[] = [
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     category: "up",
     upLessons: [
-      { title: "Lecon 1", videoUrl: "https://www.youtube.com/embed/ZqTLwQQ7sbk" },
-      { title: "Lecon 2", videoUrl: "https://www.youtube.com/embed/JvShTSYvbEg" },
-      { title: "Lecon 3", videoUrl: "https://www.youtube.com/embed/Pgq9KsVgN8s" },
-      { title: "Lecon 4", videoUrl: "https://www.youtube.com/embed/JwAKkaK5Hc4" },
+      { title: "Lecon 1", videoUrl: "https://www.youtube.com/embed/GzBP-7neYjs" },
+      { title: "Lecon 2", videoUrl: "https://www.youtube.com/embed/ZxY7Sv0aphI" },
+      { title: "Lecon 3", videoUrl: "https://www.youtube.com/embed/Wv9GpILux7s" },
+      { title: "Lecon 4", videoUrl: "https://www.youtube.com/embed/Verbr0-qAsw" },
     ],
   },
   {

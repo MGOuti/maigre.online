@@ -34,7 +34,7 @@ const defaultRecipeForm: RecipeFormData = {
 };
 
 const releasedVideoCourseIds = new Set(["commencez-ici", "comprendre-votre-corps", "recette-personnalisee"]);
-const videosLocked = true;
+const releasedUpVideoCourseIds = new Set(["accelerateur"]);
 const recipeLocked = false;
 
 const AccessPlaceholder = () => (
@@ -150,7 +150,7 @@ const CoursePage = () => {
                 title={selectedLesson.title}
               />
             </div>
-          ) : !videosLocked && selectedLesson.videoUrl ? (
+          ) : releasedUpVideoCourseIds.has(course.id) && selectedLesson.videoUrl ? (
             <div className="aspect-video overflow-hidden rounded-lg border border-border">
               <iframe
                 key={selectedUpLessonIndex}
